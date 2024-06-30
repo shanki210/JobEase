@@ -2,6 +2,7 @@ import express from "express";
 import { dbConnection } from "./database/dbConnection.js";
 import { config } from "dotenv";
 import cors from "cors";
+import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 
@@ -28,4 +29,5 @@ app.use(
 );
 dbConnection();
 
+app.use(errorMiddleware);
 export default app;
