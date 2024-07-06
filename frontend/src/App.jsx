@@ -7,6 +7,7 @@ import Register from "./components/Auth/Register";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Home from "./components/Home/Home";
+import Navbar from "./components/Layout/Navbar";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -31,10 +32,11 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

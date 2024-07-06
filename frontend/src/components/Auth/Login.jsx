@@ -37,18 +37,18 @@ const Login = () => {
     }
   };
 
-//   if(isAuthorized){
-//     return <Navigate to={'/'}/>
-//   }
+  if(isAuthorized){
+    return <Navigate to={'/home'}/>
+  }
 
   return (
     <>
       <section className="authPage">
-      <div class="logobanner">
-        <img src="/drdo_logo_0.png" width="369" height="85" alt="Defence Research and Development Organisation - DRDO, Ministry of Defence, Government of India"/>
-        <h1>Instruments Research & Development Establishment (IRDE) Internship Portal</h1>
-      </div>
-      <div class="topbanner">
+        <div class="logobanner">
+          <img src="/drdo_logo_0.png" width="369" height="85" alt="Defence Research and Development Organisation - DRDO, Ministry of Defence, Government of India"/>
+          <h1>Instruments Research & Development Establishment (IRDE) Internship Portal</h1>
+        </div>
+        <div class="topbanner">
             <img src="https://www.drdo.gov.in/drdo/sites/default/files/subsite_banner_image/lab-image.jpg" width="959" height="587" alt="Instruments Research & Development Establishment" title="Instruments Research & Development Establishment"/>
             <div class="textContent">
                 <h1>Instruments Research & Development Establishment (IRDE)</h1>

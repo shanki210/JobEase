@@ -1,8 +1,13 @@
 import React from 'react'
+import Banner from '../Layout/Banner'
+import PopularWork from './PopularWork'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <Banner/>
+      <PopularWork/>
+    </div>
   )
 }
 
