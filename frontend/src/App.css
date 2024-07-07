@@ -458,7 +458,7 @@ nav .hamburger {
   font-size: 24px;
   padding: 10px;
   background: rgb(233, 249, 255);
-  color: #2d5649;
+  color: #0056b3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -718,7 +718,7 @@ nav .hamburger {
 }
 .myJobs .container .banner .card .button_wrapper .check_btn {
   background: transparent;
-  color: #184235;
+  color: #0056b3;
   border: 1px solid #184235;
   border-radius: 7px;
   width: 50px;
@@ -730,7 +730,7 @@ nav .hamburger {
 }
 .myJobs .container .banner .card .button_wrapper .check_btn:hover {
   transition: all 0.3s;
-  background: #184235;
+  background: #0056b3;
   color: #f1f3f6;
 }
 .myJobs .container .banner .card .button_wrapper .cross_btn {
@@ -831,7 +831,7 @@ nav .hamburger {
   text-decoration: none;
   padding: 7px;
   font-size: 20px;
-  color: #2d5649;
+  color: #0056b3;
   background: rgb(233, 249, 255);
   width: 100%;
   display: block;
@@ -876,7 +876,7 @@ nav .hamburger {
 }
 .jobDetail .container .banner p {
   font-weight: bold;
-  color: #2d5649;
+  color: #0056b3;
 }
 .jobDetail .container .banner p span {
   color: #18191c;
@@ -896,5 +896,67 @@ nav .hamburger {
 @media (max-width: 1520px) {
   .jobDetail .container {
     min-width: 100%;
+  }
+}
+
+.application {
+  display: flex;
+  flex-direction: column;
+}
+.application .container {
+  min-width: 1500px;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 50px 20px;
+}
+.application .container form {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  padding: 40px 20px;
+  gap: 25px;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+.application .container form input {
+  border: none;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  padding: 12px 4px;
+}
+.application .container form textarea {
+  width: 100%;
+  height: 200px;
+  font-size: 20px;
+  padding: 12px 4px;
+}
+.application .container form input:focus,
+.application .container form textarea:focus {
+  outline: none;
+}
+.application .container form button {
+  background-color: #0056b3;
+  color: rgb(233, 249, 255);
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  padding: 12px 30px;
+  text-decoration: none;
+  width: 100%;
+}
+.application .container form button:hover {
+  background-color: #02274e;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+@media (max-width: 1520px) {
+  .application .container {
+    min-width: 100%;
+  }
+  .application .container form {
+    width: 100%;
   }
 }
