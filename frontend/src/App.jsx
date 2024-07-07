@@ -13,6 +13,7 @@ import MyJobs from "./components/Job/MyJobs";
 import Jobs from "./components/Job/Jobs";
 import JobDetails from "./components/Job/JobDetails";
 import Application from "./components/Application/Application";
+import MyApplications from "./components/Application/MyApplications";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/job/getall" element={<Jobs />} />
           <Route path="/job/:id" element={<JobDetails />} />
           <Route path="/application/:id" element={<Application />} />
+          <Route path="/applications/me" element={<MyApplications />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
