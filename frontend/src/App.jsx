@@ -10,6 +10,7 @@ import Home from "./components/Home/Home";
 import Navbar from "./components/Layout/Navbar";
 import PostJob from "./components/Job/PostJob";
 import MyJobs from "./components/Job/MyJobs";
+import Jobs from "./components/Job/Jobs";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/job/post" element={<PostJob />} />
           <Route path="/job/me" element={<MyJobs />} />
+          <Route path="/job/getall" element={<Jobs />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
