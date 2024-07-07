@@ -852,3 +852,49 @@ nav .hamburger {
     width: 100%;
   }
 }
+
+.jobDetail {
+  background: #f1f3f6;
+  padding: 50px 20px;
+}
+.jobDetail .container {
+  max-width: 1500px;
+  min-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.jobDetail .container .banner {
+  width: 100%;
+  min-height: 767px;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+}
+.jobDetail .container .banner p {
+  font-weight: bold;
+  color: #2d5649;
+}
+.jobDetail .container .banner p span {
+  color: #18191c;
+  font-weight: 400;
+}
+.jobDetail .container .banner a {
+  background-color: #2d5649;
+  color: rgb(233, 249, 255);
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  padding: 12px 30px;
+  text-decoration: none;
+  margin-top: 10px;
+  width: fit-content;
+}
+@media (max-width: 1520px) {
+  .jobDetail .container {
+    min-width: 100%;
+  }
+}

@@ -11,6 +11,7 @@ import Navbar from "./components/Layout/Navbar";
 import PostJob from "./components/Job/PostJob";
 import MyJobs from "./components/Job/MyJobs";
 import Jobs from "./components/Job/Jobs";
+import JobDetails from "./components/Job/JobDetails";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/job/post" element={<PostJob />} />
           <Route path="/job/me" element={<MyJobs />} />
           <Route path="/job/getall" element={<Jobs />} />
+          <Route path="/job/:id" element={<JobDetails />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
