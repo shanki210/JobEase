@@ -8,6 +8,8 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Layout/Navbar";
+import PostJob from "./components/Job/PostJob";
+import MyJobs from "./components/Job/MyJobs";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/job/post" element={<PostJob />} />
+          <Route path="/job/me" element={<MyJobs />} />
         </Routes>
         <Toaster />
       </BrowserRouter>
