@@ -138,7 +138,13 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
             <span>Address:</span> {element.address}
           </p>
           <p>
-            <span>CoverLetter:</span> {element.coverLetter}
+          {/* on clicking on dots it will show whole cover letter */}
+            
+          
+            <span>CoverLetter:</span>
+            {element.coverLetter.length > 100
+              ? element.coverLetter.slice(0, 100) + "..."
+              : element.coverLetter}
           </p>
         </div>
         <div className="resume">
@@ -176,7 +182,10 @@ const EmployerCard = ({ element, openModal }) => {
             <span>Address:</span> {element.address}
           </p>
           <p>
-            <span>CoverLetter:</span> {element.coverLetter}
+          <span>CoverLetter:</span>
+            {element.coverLetter.length > 100
+              ? element.coverLetter.slice(0, 100) + "..."
+              : element.coverLetter}
           </p>
         </div>
         <div className="resume">

@@ -56,6 +56,40 @@ const Application = () => {
       toast.error(error.response.data.message);
     }
   };
+  const handleSuggestCoverLetter = async () => {
+    if (!resume) {
+      toast.error("Please upload your resume first.");
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(resume);
+    reader.onloadend = async () => {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:4000/api/v1/application/suggestcoverletter",
+          {
+            resume: reader.result,
+            mimeType: resume.type,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setCoverLetter(data.suggestedCoverLetter);
+        toast.success("Cover letter suggested!");
+      } catch (error) {
+        toast.error(error.response.data.message);
+      }
+    };
+    reader.onerror = () => {
+      toast.error("Error reading file.");
+    };
+  };
+
 
   if (!isAuthorized || (user && user.role === "Employer")) {
     navigateTo("/");
@@ -91,10 +125,13 @@ const Application = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
           <textarea
-            placeholder="CoverLetter..."
+            placeholder={coverLetter}
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
           />
+          <button type="button" onClick={handleSuggestCoverLetter}>
+            Suggest Cover Letter
+          </button>
           <div>
             <label
               style={{ textAlign: "start", display: "block", fontSize: "20px" }}

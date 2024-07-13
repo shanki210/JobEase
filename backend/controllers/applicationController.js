@@ -3,6 +3,16 @@ import ErrorHandler from "../middlewares/error.js";
 import { Application } from "../models/applicationSchema.js";
 import { Job } from "../models/jobSchema.js";
 import cloudinary from "cloudinary";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from 'url';
+// import { GoogleAIFileManager } from "@google/generative-ai/files";
+
+const genAI = new GoogleGenerativeAI("AIzaSyCr5wGS1cYHXdFFNWRemYmCtYM4Q_hsWpo");
+// const fileManager = new GoogleAIFileManager("AIzaSyCr5wGS1cYHXdFFNWRemYmCtYM4Q_hsWpo");
+
+
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const { role } = req.user;
@@ -136,3 +146,110 @@ export const jobseekerDeleteApplication = catchAsyncErrors(
     });
   }
 );
+
+// export const suggestCoverLetter = catchAsyncErrors(async (req, res, next) => {
+//   try{
+//     if (!req.files || Object.keys(req.files).length === 0) {
+//       return next(new ErrorHandler("Resume File Required!", 400));
+//     }
+  
+//     const { resume } = req.files;
+//     const allowedFormats = ["image/png", "image/jpeg", "application/pdf"];
+//     if (!allowedFormats.includes(resume.mimetype)) {
+//       return next(new ErrorHandler("Invalid file type. Please upload an image or PDF file.", 400));
+//     }
+  
+//     const uploadResult = await fileManager.uploadFile(resume, {
+//       mimeType: resume.mimetype,
+//       displayName: "sample",
+//     });
+  
+//     if (!uploadResult || uploadResult.error) {
+//       console.error(
+//         "File api Error:",
+//         uploadResult.error || "Unknown File API error"
+//       );
+//       return next(new ErrorHandler("Failed to upload Resume to File API", 500));
+//     }
+  
+//     const prompt = "Generate a cover letter based on the attached resume.";
+  
+//     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+//     const result = await model.generateContent([
+//       {
+//         fileData: {
+//           mimeType: uploadFile.file.mimeType,
+//           fileUri: uploadFile.file.uri
+//         }
+//       },
+//       { text: "Generate a cover letter based on the attached resume." },
+//     ]);
+  
+//     const response = await result.response;
+//     const suggestedCoverLetter = await response.text();
+  
+//     await fileManager.deleteFile(uploadResult.file.name);
+  
+//     res.status(200).json({
+//       success: true,
+//       suggestedCoverLetter,
+//     });
+//   }catch(error){
+//     console.log(error); 
+//   }
+  
+ 
+// });
+
+
+// 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+function fileToGenerativePart(base64Data, mimeType) {
+  return {
+    inlineData: {
+      data: base64Data.split(",")[1], // Remove the data URL prefix
+      mimeType
+    },
+  };
+}
+
+export const suggestCoverLetter = catchAsyncErrors(async (req, res, next) => {
+  const { resume, mimeType } = req.body;
+
+  if (!resume || !mimeType) {
+    return next(new ErrorHandler("Resume file is required.", 400));
+  }
+  
+
+  try {
+    const prompt = "Generate a cover letter based on the attached resume.";
+
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    const imageParts = [
+      fileToGenerativePart(resume, mimeType)
+    ];
+
+    const result = await model.generateContent([prompt, ...imageParts]);
+
+    const response =  await result.response;
+    const suggestedCoverLetter = await response.text();
+
+   
+
+    res.status(200).json({
+      success: true,
+      suggestedCoverLetter,
+    });
+
+  } catch (error) {
+    console.error("Error generating cover letter:", error);
+    return next(new ErrorHandler("Failed to generate cover letter.", 500));
+  }
+});
+
+
