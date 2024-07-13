@@ -7,10 +7,10 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
-// import { GoogleAIFileManager } from "@google/generative-ai/files";
+
 
 const genAI = new GoogleGenerativeAI("AIzaSyCr5wGS1cYHXdFFNWRemYmCtYM4Q_hsWpo");
-// const fileManager = new GoogleAIFileManager("AIzaSyCr5wGS1cYHXdFFNWRemYmCtYM4Q_hsWpo");
+
 
 
 

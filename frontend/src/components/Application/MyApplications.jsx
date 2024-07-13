@@ -68,6 +68,21 @@ const MyApplications = () => {
     setModalOpen(false);
   };
 
+  const scoreAndDownloadApplications = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/gemini/scoreapplications",
+        {},
+        { responseType: 'blob', withCredentials: true }
+      );
+      const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, 'high_scoring_applications.xlsx');
+      toast.success("Excel file downloaded!");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <section className="my_applications page">
       {user && user.role === "Job Seeker" ? (
@@ -94,6 +109,7 @@ const MyApplications = () => {
       ) : (
         <div className="container">
           <h1>Applications From Job Seekers</h1>
+          <button onClick={scoreAndDownloadApplications}>Score Applications and Download Excel</button>
           {applications.length <= 0 ? (
             <>
               <h4>No Applications Found</h4>
