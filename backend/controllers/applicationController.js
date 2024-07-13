@@ -66,6 +66,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     !coverLetter ||
     !phone ||
     !address ||
+    !jobId ||
     !applicantID ||
     !employerID ||
     !resume
@@ -78,6 +79,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     coverLetter,
     phone,
     address,
+    jobId,
     applicantID,
     employerID,
     resume: {
@@ -204,8 +206,7 @@ export const jobseekerDeleteApplication = catchAsyncErrors(
 
 // 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 
 
 function fileToGenerativePart(base64Data, mimeType) {

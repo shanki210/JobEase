@@ -24,7 +24,7 @@ const JobDetails = () => {
   }, []);
 
   if (!isAuthorized) {
-    navigateTo("/login");
+    navigateTo("/");
   }
 
   return (

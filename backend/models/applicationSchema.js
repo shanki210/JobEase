@@ -25,6 +25,11 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your Address!"],
   },
+  jobId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job",
+    required: true,
+  },
   resume: {
     public_id: {
       type: String, 
@@ -58,7 +63,8 @@ const applicationSchema = new mongoose.Schema({
       enum: ["Employer"],
       required: true,
     },
-  },
+  }
+ 
 });
 
 export const Application = mongoose.model("Application", applicationSchema);
