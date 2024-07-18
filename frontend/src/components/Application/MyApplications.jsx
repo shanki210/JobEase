@@ -83,7 +83,18 @@ const MyApplications = () => {
   //   }
   // };
 
-  
+  const scoreApplication = async (applicationId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/v1/application/score/${applicationId}`,
+        { withCredentials: true }
+      );
+      setScores((prevScores) => ({ ...prevScores, [applicationId]: response.data.score }));
+      toast.success("Score generated!");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
   const scoreAndDownloadApplications = async () => {
     try {
       const response = await axios.get(
@@ -232,6 +243,11 @@ const EmployerCard = ({ element, openModal }) => {
             alt="resume"
             onClick={() => openModal(element.resume.url)}
           />
+        </div>
+        <div className="btn_area">
+          <button onClick={() => scoreApplication(element._id)}>
+              Score Application
+          </button>
         </div>
       </div>
     </>
