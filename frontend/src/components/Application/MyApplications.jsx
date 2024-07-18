@@ -68,17 +68,39 @@ const MyApplications = () => {
     setModalOpen(false);
   };
 
+  // const scoreAndDownloadApplications = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:4000/api/v1/gemini/scoreapplications",
+  //       {},
+  //       { responseType: 'blob', withCredentials: true }
+  //     );
+  //     const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  //     saveAs(blob, 'high_scoring_applications.xlsx');
+  //     toast.success("Excel file downloaded!");
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
+
+  
   const scoreAndDownloadApplications = async () => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         "http://localhost:4000/api/v1/gemini/scoreapplications",
-        {},
-        { responseType: 'blob', withCredentials: true }
+        {
+          responseType: "blob",
+          withCredentials: true,
+        }
       );
-      const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      saveAs(blob, 'high_scoring_applications.xlsx');
-      toast.success("Excel file downloaded!");
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "high_scoring_applications.xlsx");
+      document.body.appendChild(link);
+      link.click();
     } catch (error) {
+      console.error("Error generating score and downloading Excel:", error);
       toast.error(error.response.data.message);
     }
   };
