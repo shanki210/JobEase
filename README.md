@@ -58,5 +58,6 @@ npm run dev
 npm start
 ```
 ## **WorkFlow**
-![alt text](https://github.com/shanki210/JobEase/image/blob/main/workflow.png?raw=true)
+![Workflow Diagram](./images/workflow.png)
+
 
