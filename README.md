@@ -36,3 +36,19 @@ To run this project locally, follow the steps below:
 ```bash
 git clone https://github.com/shanki210/JobEase.git
 cd JobEase
+
+### **2. Install Dependencies**
+```bash
+cd frontend
+npm install
+``bash
+cd backend
+npm install
+
+### **3. Start the Application**
+```bash
+cd frontend
+npm run dev
+```bash
+cd backend
+npm start
